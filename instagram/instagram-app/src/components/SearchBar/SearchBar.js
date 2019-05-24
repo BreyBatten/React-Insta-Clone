@@ -2,10 +2,13 @@ import React from "react";
 
 function SearchBar(props) {
     return (
-        <input
-            type="text"
-            placeholder="search"
-        />
+        <div className="SearchBarHeader">
+            <h1>Instagram</h1>
+            <input
+                type="text"
+                placeholder="search"
+            />
+        </div>
     )
 }
 
