@@ -1,18 +1,19 @@
 import React from 'react';
-import dummyData from '../../dummy-data';
+import {dummyData} from '../../dummy-data';
+// import Comment from './Comment';
 
 class CommentSection extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            CommentSection: dummyData
+            data: dummyData
         };
     }
 
     render() {
         return (
             <div className="comment-section">
-                comments go here
+                {}
             </div>
         )
     }
