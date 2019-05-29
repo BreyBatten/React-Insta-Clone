@@ -1,22 +1,72 @@
 import React from 'react';
-import {dummyData} from '../../dummy-data';
-// import Comment from './Comment';
+import Comment from './Comment';
+import CommentInput from './CommentInput'
+import PropTypes from 'prop-types'
+import './CommentSection.css'
 
 class CommentSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: dummyData
+            comments: props.comments
         };
+    }
+
+    componentDidMount() {
+        const id = this.props.postId
+        if (localStorage.getItem(id)) {
+            this.setState({
+                comments: JSON.parse(localStorage.getItem(this.props.postId))
+            })
+        } else {
+            this.setComments()
+        }
+    }
+
+    componentWillUnmount() {
+        this.setComments()
+    }
+
+    setComments = () => {
+        localStorage.setItem(
+            this.props.postId,
+            JSON.stringify(this.state.comments)
+        )
+    }
+
+    commentHandler = event => {
+        this.setState({ comment: event.target.value })
+    }
+
+    handleCommentSubmit = event => {
+        event.preventDefault()
+        const newComment = { text: this.state.comment, username: ''}
+        const comments = this.state.comments.slice()
+        comments.push(newComment)
+        this.setState({ comments, comment: ''})
+        setTimeout(() => {
+            this.setComments()
+        }, 400)
     }
 
     render() {
         return (
-            <div className="comment-section">
-                {}
+            <div>
+                {this.state.comments.map((c, i) => <Comment key={i} comment={c} />)}
+                <CommentInput 
+                    comment={this.state.comment}
+                    submitComment={this.handleCommentSubmit}
+                    changeComment={this.commentHandler}
+                />
             </div>
         )
     }
+}
+
+CommentSection.propTypes = {
+    comments: PropTypes.arrayOf(
+        PropTypes.shape({ text: PropTypes.string, username: PropTypes.string})
+    )
 }
 
 export default CommentSection;
