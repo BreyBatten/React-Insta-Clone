@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentSection from '../CommentSection/CommentSection'
 import PostHeader from './PostHeader'
+import LikeSection from './LikeSection'
 import PropTypes from 'prop-types'
 import './PostContainer.css'
 
@@ -29,6 +30,10 @@ class Post extends React.Component {
                         src={this.props.post.imageUrl}
                     />
                 </div>
+                <LikeSection
+                    incrementLike={this.incrementLike}
+                    likes={this.state.likes}
+                />
                 <CommentSection
                     postId={this.props.post.imageUrl}
                     comments={this.props.post.comments} 

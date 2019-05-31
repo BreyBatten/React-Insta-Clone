@@ -8,7 +8,8 @@ class CommentSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comments: props.comments
+            comments: props.comments,
+            comment: ""
         };
     }
 
@@ -40,13 +41,13 @@ class CommentSection extends React.Component {
 
     handleCommentSubmit = event => {
         event.preventDefault()
-        const newComment = { text: this.state.comment, username: ''}
+        const newComment = { text: this.state.comment, username: 'breybat10'}
         const comments = this.state.comments.slice()
         comments.push(newComment)
         this.setState({ comments, comment: ''})
         setTimeout(() => {
             this.setComments()
-        }, 400)
+        }, 500)
     }
 
     render() {

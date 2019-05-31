@@ -16,4 +16,9 @@
 
 form {
     padding: 10px;
+
+}
+
+.comment-input {
+    border-radius: 5px;
 }
