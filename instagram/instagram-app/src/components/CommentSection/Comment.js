@@ -1,21 +1,28 @@
-import React from "react"
-import PropTypes from 'prop-types'
+import React from 'react';
+import styled from 'styled-components';
 
-const Comment = props => {
+const CommentDiv = styled.div`
+  display: flex;
+  font-size: 14px;
+`;
+
+const CommentTextP = styled.p`
+  margin: 0;
+  padding: 8px 0;
+`;
+
+const CommentUserSpan = styled.span`
+  font-weight: bold;
+`;
+
+class Comment extends React.Component {
+  render() {
     return (
-        <div className="comment-text">
-            <span className="user"><strong>{props.comment.username} </strong></span>
-            <span className="comment">{props.comment.text}</span>
-        </div>
+      <CommentDiv>
+        <CommentTextP><CommentUserSpan>{this.props.username}</CommentUserSpan> {this.props.text}</CommentTextP>
+      </CommentDiv>
     )
+  }
 }
 
-Comment.propTypes = {
-    comment: PropTypes.shape({
-        text: PropTypes.string,
-        username: PropTypes.string
-    })
-}
-
-
-export default Comment
+export default Comment;
